@@ -1,0 +1,48 @@
+version: '3'
+services: 
+    Books:
+        image: node-docker-exp
+        build: './Books'
+        ports: 
+            - "9000:2020"
+    Customers:
+        image: node-docker-exp1
+        build: './Customers'
+        ports: 
+           - "9001:2021"
+    Orders:
+        image: node-docker-exp2
+        build: './Orders'
+        ports: 
+           - "9002:2022"
+    multidbconn:
+        image: multidbs
+        build: './multidbconn'
+        ports: 
+            - "8000:2000"
+    rediscache:
+        image: redis_node_cache
+        build: './Redis_Node_cache'
+        ports: 
+            - "6000:5000" 
+             
+
+    # nginx:
+        # image: nginx
+        # ports: 
+        #     - "8080:80"
+        # volumes: 
+        #     - ./Orders/orders:/srv/www/static
+        #     - ./default.conf:/etc/nginx/conf.d/default.conf
+    nginx: 
+        image: nginx:latest
+        volumes:
+            - ./Orders/orders:/srv/www/static
+            - ./default.conf:/etc/nginx/nginx.conf
+        ports:
+              - "80:80"
+                
+        depends_on: 
+            - Books
+            - Customers
+            - Orders       

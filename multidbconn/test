@@ -1,0 +1,61 @@
+const express = require("express")
+// var Schema = mongoose.Schema;
+
+const app = express()
+const mongoose = require("mongoose")
+const port = 2020
+ require("./Book")
+var ObjectId = require('mongodb').ObjectID;
+const url = "mongodb://devchurchviteadmin:$Churchvite12345@13.126.33.219:27017/churchvitedev"
+const bodyParser = require("body-parser")
+app.use(bodyParser.json())
+
+var conn      = mongoose.createConnection('mongodb://devchurchviteadmin:$Churchvite12345@13.126.33.219:27017/churchvitedev',
+{ useNewUrlParser: true,useUnifiedTopology: true });
+var conn2     = mongoose.createConnection('mongodb://prepodayyappa:$PreProdAyyappa@13.126.33.219:27017/preprodayyappa',
+{ useNewUrlParser: true,useUnifiedTopology: true });
+var ModelA    = conn.model('Books', new mongoose.Schema({
+    
+        title: {
+            type:String
+        },
+        author: {
+            type:String 
+        }, numberPages: {
+            type:String
+        },
+         publisher: {
+            type:String
+        }
+    },{versionKey:false
+}));
+
+var ModelB    = conn2.model('Customers', new mongoose.Schema({
+    name: {
+        type:String
+    },
+    age: {
+        type:String 
+    }, address: {
+        type:String
+    }   
+},{versionKey:false}))
+
+app.get('/books', (req, res) => {
+   var input = req.query
+   ModelA.find({}).exec(function (err, data) {
+        console.log(data)
+        res.send(data)
+    })
+})
+app.get('/customers', (req, res) => {
+    var input = req.query
+    ModelB.find({}).exec(function (err, data) {
+         console.log(data)
+         res.send(data)
+     })
+ })
+
+app.listen(port, () => {
+    console.log("server started with port no" + port)
+})

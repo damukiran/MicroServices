@@ -1,0 +1,21 @@
+docker-machine start default 
+http://192.168.99.100:9000/books/?id=5e70dab86b394959c0732470
+http://192.168.99.100:9001/customers/?id=5e71c3c8d32f9d276856ef9a
+http://192.168.99.100:9002/orders/?id=5e71cb1866501a33306ab7c2
+docker-compose build && docker-compose up
+docker-machine ip default   
+docker build -t mybuildimage .
+docker run -p 8000:2000 -d multidbs
+http://192.168.99.100:8000/books
+http://192.168.99.100:8000/targetdatabase/db1
+Redis
+docker pull redis
+docker run -d -p 6379:6379 --name my-redis redis
+docker exec -it my-redis sh
+redis-cli
+docker container start my-redis
+http://localhost:5000/repos/bradtraversy
+get bradtraversy
+set name hyd 10
+get name
+flushall
