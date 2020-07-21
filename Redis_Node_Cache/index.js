@@ -4,10 +4,10 @@ var redis=require('redis')
 // const redis = require('ioredis')
 
 var port = 5000;
-var Redis_port;
+var Redis_port =1000;
 
-var client = redis.createClient({host:'192.168.99.100',
-Redis_port:6379});
+var client = redis.createClient({host:'13.235.82.199',
+Redis_port:8000});
 
 var app = express();
 function cache(req,res,next){
