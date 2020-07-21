@@ -4,7 +4,7 @@ var redis=require('redis')
 // const redis = require('ioredis')
 
 var port = 5000;
-var Redis_port =1000;
+var Redis_port;
 
 var client = redis.createClient({host:'13.235.82.199',
 Redis_port:8000});
