@@ -6,8 +6,8 @@ var redis=require('redis')
 var port = 5000;
 var Redis_port;
 
-var client = redis.createClient({host:'13.235.82.199',
-Redis_port:8000});
+var client = redis.createClient({host:'192.168.99.100',
+Redis_port:6372});
 
 var app = express();
 function cache(req,res,next){
